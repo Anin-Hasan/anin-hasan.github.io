@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anin_Hasan Portfolio</title>
+    <link rel="icon" type="image/png" href="icons8-portfolio-94.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        body.light-theme {
+            background-color: #ffffff;
+            color: #24292e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: #21262d;
+            color: #c9d1d9;
+            border: none;
+            padding: 0;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: background 0.3s, color 0.3s;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            background-color: #30363d;
+        }
+
+        body.light-theme .theme-toggle {
+            background-color: #f6f8fa;
+            color: #24292e;
+            border: 1px solid #d0d7de;
+        }
+
+        body.light-theme .theme-toggle:hover {
+            background-color: #f3f4f6;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #21262d;
+            padding-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        body.light-theme .header {
+            border-bottom-color: #d0d7de;
+        }
+
+        .name {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #58a6ff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #7c3aed;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-content {
+            margin-left: 20px;
+            color: #8b949e;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .section-content {
+            color: #656d76;
+        }
+
+        .highlight {
+            color: #58a6ff;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .highlight {
+            color: #0969da;
+        }
+
+        .green {
+            color: #7c3aed;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .green {
+            color: #8250df;
+        }
+
+        .orange {
+            color: #f79000;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .orange {
+            color: #bc4c00;
+        }
+
+        .experience-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 3px solid #21262d;
+            background-color: #161b22;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        body.light-theme .experience-item {
+            border-left-color: #d0d7de;
+            background-color: #f6f8fa;
+        }
+
+        .job-title {
+            color: #7c3aed;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .job-title {
+            color: #8250df;
+        }
+
+        .company {
+            color: #58a6ff;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .company {
+            color: #0969da;
+        }
+
+        .date {
+            color: #7c3aed;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .date {
+            color: #8250df;
+        }
+
+        .description {
+            color: #c9d1d9;
+            margin-left: 10px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .description {
+            color: #24292e;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .skill-category {
+            background-color: #161b22;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #7c3aed;
+            transition: all 0.3s ease;
+        }
+
+        body.light-theme .skill-category {
+            background-color: #f6f8fa;
+            border-left-color: #8250df;
+        }
+
+        .skill-title {
+            color: #58a6ff;
+            font-weight: bold;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .skill-title {
+            color: #0969da;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            color: #8b949e;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .contact-item {
+            color: #656d76;
+        }
+
+        .contact-item a {
+            color: #58a6ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .contact-item a {
+            color: #0969da;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .project-item {
+            background-color: #161b22;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #58a6ff;
+            transition: all 0.3s ease;
+        }
+
+        body.light-theme .project-item {
+            background-color: #f6f8fa;
+            border-left-color: #0969da;
+        }
+
+        .project-title {
+            color: #7c3aed;
+            font-weight: bold;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .project-title {
+            color: #8250df;
+        }
+
+        .project-link {
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .project-link {
+            color: #0969da;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        .education-item {
+            background-color: #161b22;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #f79000;
+            transition: all 0.3s ease;
+        }
+
+        body.light-theme .education-item {
+            background-color: #f6f8fa;
+            border-left-color: #bc4c00;
+        }
+
+        .degree {
+            color: #58a6ff;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .degree {
+            color: #0969da;
+        }
+
+        .institution {
+            color: #7c3aed;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .institution {
+            color: #8250df;
+        }
+
+        .gpa {
+            color: #7c3aed;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .gpa {
+            color: #8250df;
+        }
+
+        .typing-animation {
+            display: inline-block;
+            min-width: 200px;
+            text-align: left;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .name {
+                font-size: 2em;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .typing-animation {
+                min-width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="name">Anin Hasan</h1>
+            <div class="contact-info">
+                <div class="contact-item">📧 <a href="mailto:anin.kuece@gmail.com">anin.kuece@gmail.com</a></div>
+                <div class="contact-item">📱 +8801736076970</div>
+                <div class="contact-item">🔗 <a href="https://github.com/Anin-Hasan" target="_blank">GitHub</a></div>
+                <div class="contact-item">💼 <a href="https://www.linkedin.com/in/anin-hasan/" target="_blank">LinkedIn</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Who I Am</h2>
+            <div class="section-content">
+                <span class="green typing-animation" id="typingText">Software Developer</span><br>
+                Based out of Khulna, Bangladesh<br>
+                Loves coding, exploring new technologies, and building innovative solutions
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">What I Do</h2>
+            <div class="section-content">
+                <span class="highlight">→ Full-stack Web Development</span><br>
+                <span class="highlight">→ Frontend Development</span><br>
+                <span class="highlight">→ Backend Development</span><br>
+                <span class="highlight">→ Database Management</span><br>
+                <span class="highlight">→ API Development</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">My Journey So Far</h2>
+            <div class="section-content">
+                <div class="experience-item">
+                    <div class="job-title">Junior Software Developer</div>
+                    <div class="company">Codemen Solutions Ltd.</div>
+                    <div class="date">November 2024 - Present</div>
+                    <div class="description">
+                        → Developed and optimized scalable web applications using Node.js, React.js, and PostgreSQL<br>
+                        → Contributing to high-performance and user-friendly solutions
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Frontend Developer Intern</div>
+                    <div class="company">Khulna University, IEEE KU Branch</div>
+                    <div class="date">January 2024 - October 2024</div>
+                    <div class="description">
+                        → Led the development and maintenance of the IEEEKU website<br>
+                        → Achieved a 15% increase in website traffic<br>
+                        → Explored new technologies and approaches to streamline processes<br>
+                        → Prepared project presentations and reports to assist senior staff
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Software Developer Intern</div>
+                    <div class="company">Bangladesh Cable Shilpa Limited, Shiromoni, Khulna</div>
+                    <div class="date">November 2023 - January 2024</div>
+                    <div class="description">
+                        → Gained hands-on experience in software development<br>
+                        → Worked on various development projects and tasks
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-title">Backend Development</div>
+                    <div>Node.js, Express.js, Prisma ORM</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-title">Frontend Development</div>
+                    <div>React, Next.js, HTML, CSS, Tailwind CSS, MaterialUI</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-title">Programming Languages</div>
+                    <div>JavaScript, TypeScript</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-title">Databases</div>
+                    <div>PostgreSQL, MongoDB</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-title">Tools & Version Control</div>
+                    <div>GitHub, GitLab, Bitbucket, REST API</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-title">Languages</div>
+                    <div>Bengali (Native), English (Fluent)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="section-content">
+                <div class="project-item">
+                    <div class="project-title">Educational Website (In Production)</div>
+                    <div class="description">A comprehensive educational platform currently under development for a client</div>
+                    <div style="color: #f79000; font-size: 0.9em; margin-top: 5px;">🔒 Private Repository - Commercial Project</div>
+                </div>
+                <div class="project-item">
+                    <div class="project-title">Dashboard Application</div>
+                    <div class="description">A comprehensive dashboard built with modern web technologies</div>
+                    <a href="https://dashboard200921.vercel.app/dashboard" class="project-link" target="_blank" style="margin-right: 15px;">→ Live Demo</a>
+                    <a href="https://github.com/Anin-Hasan/NextJs-Dashboard" class="project-link" target="_blank">→ View on GitHub</a>
+                </div>
+                <div class="project-item">
+                    <div class="project-title">Task Management App</div>
+                    <div class="description">A full-featured task management application for productivity</div>
+                    <a href="https://task-app-react-sigma-six.vercel.app/" class="project-link" target="_blank" style="margin-right: 15px;">→ Live Demo</a>
+                    <a href="https://github.com/Anin-Hasan/TaskManagementApp" class="project-link" target="_blank">→ View on GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Education & Certifications</h2>
+            <div class="section-content">
+                <div class="education-item">
+                    <div class="degree">BSc. in Electronics and Communication Engineering</div>
+                    <div class="institution">Khulna University</div>
+                    <div class="date">2024</div>
+                    <div class="gpa">CGPA: 3.49</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree">HSC in Science</div>
+                    <div class="institution">Govt. Ananda Mohan College, Mymensingh</div>
+                    <div class="date">2019</div>
+                    <div class="gpa">GPA: 4.83</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree">SSC in Science</div>
+                    <div class="institution">Cantonment Public School and College, Mymensingh</div>
+                    <div class="date">2017</div>
+                    <div class="gpa">GPA: 5.00</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree">Sakura Science Exchange Program</div>
+                    <div class="institution">Japan</div>
+                    <div class="date">April 2023</div>
+                    <div class="gpa">International Research Experience</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Drop Me A Line</h2>
+            <div class="section-content">
+                <span class="highlight">Email:</span> <a href="mailto:anin.kuece@gmail.com">anin.kuece@gmail.com</a><br>
+                <span class="highlight">GitHub:</span> <a href="https://github.com/Anin-Hasan" target="_blank">github.com/Anin-Hasan</a><br>
+                <span class="highlight">LinkedIn:</span> <a href="https://www.linkedin.com/in/anin-hasan/" target="_blank">linkedin.com/in/anin-hasan</a>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #21262d; color: #8b949e;">
+            © Anin Hasan 2024
+        </div>
+    </div>
+
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle i');
+            body.classList.toggle('light-theme');
+            if (body.classList.contains('light-theme')) {
+                themeToggle.classList.remove('fa-moon');
+                themeToggle.classList.add('fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeToggle.classList.remove('fa-sun');
+                themeToggle.classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.querySelector('.theme-toggle i');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                themeToggle.classList.remove('fa-moon');
+                themeToggle.classList.add('fa-sun');
+            } else {
+                themeToggle.classList.remove('fa-sun');
+                themeToggle.classList.add('fa-moon');
+            }
+        });
+
+        const roles = [
+            "Software Developer",
+            "Frontend Developer", 
+            "Backend Developer",
+            "Full-stack Developer",
+            "Web Developer",
+            "Electronics Engineer",
+            "Researcher"
+        ];
+        
+        let currentRoleIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        let isPaused = false;
+        
+        const typingElement = document.getElementById('typingText');
+        
+        function typeText() {
+            const currentRole = roles[currentRoleIndex];
+            
+            if (!isDeleting && !isPaused) {
+                typingElement.textContent = currentRole.substring(0, currentCharIndex + 1);
+                currentCharIndex++;
+                
+                if (currentCharIndex === currentRole.length) {
+                    isPaused = true;
+                    setTimeout(() => {
+                        isPaused = false;
+                        isDeleting = true;
+                    }, 2000); 
+                }
+            } else if (isDeleting && !isPaused) {
+
+                typingElement.textContent = currentRole.substring(0, currentCharIndex - 1);
+                currentCharIndex--;
+                
+                if (currentCharIndex === 0) {
+                    isDeleting = false;
+                    currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+                }
+            }
+            
+
+            const typeSpeed = isDeleting ? 50 : 100;
+            setTimeout(typeText, typeSpeed);
+        }
+        
+
+        typeText();
+    </script>
+</body>
+</html>
